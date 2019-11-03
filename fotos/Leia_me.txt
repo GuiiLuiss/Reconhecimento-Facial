@@ -1,0 +1,1 @@
+Utilize o arquivo captura.py para fazer a captura das fotos 
