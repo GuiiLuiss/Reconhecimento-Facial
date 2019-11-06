@@ -4,9 +4,7 @@ import numpy as np
 
 
 ##Algoritmos classificadores
-eigenface = cv2.face.EigenFaceRecognizer_create(num_components = 50,threshold=0)
-fisherface = cv2.face.FisherFaceRecognizer_create(num_components = 50,threshold=0) #Melhor em relação a iluminação comparado ao EigenFaces
-lbph = cv2.face.LBPHFaceRecognizer_create() #Mais robusto em relação a variação da iluminação
+lbph = cv2.face.LBPHFaceRecognizer_create(neighbors = 10,threshold=0) #Mais robusto em relação a variação da iluminação
 
 def getImagemComId(): #Vai percorrer a pasta de fotos
     caminhos = [os.path.join('fotos',f) for f in os.listdir('fotos')]
@@ -29,11 +27,6 @@ ids, faces = getImagemComId()
 #print(faces)
 
 print("Treinando....")
-eigenface.train(faces,ids)
-eigenface.write('classificadorEigen.yml') # Arquivo que será gerado para o reconhecimento facial 
-
-fisherface.train(faces,ids)
-fisherface.write('classificadorFisher.yml')
 
 lbph.train(faces,ids)
 lbph.write('classificadorLBPH.yml')

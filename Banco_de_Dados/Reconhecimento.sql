@@ -1,3 +1,5 @@
+create database Cognitiva
+
 CREATE table Alunos(
 	 ra int identity(1800000,1) not null
 	,nome varchar(50) not null
@@ -7,7 +9,9 @@ CREATE table Alunos(
 	constraint pk_raAlunos primary key (ra)
 );
 
-insert into alunos values ('Wesley','Banco de dados','4A'), ('Guilherme','Banco de dados','4A'), ('Neri','Banco de dados','4A');
+insert into alunos values ('WesleyChatãoooooooo','Banco de dados','4A')
+('Wesley','Banco de dados','4A'), ('Guilherme','Banco de dados','4A'), ('Neri','Banco de dados','4A'),
+('Henrique','Banco de dados','4A'),('Mayara','Banco de dados','4A');
 
 CREATE TABLE sala (
 	numero int
@@ -27,16 +31,18 @@ CREATE TABLE Chamada(
  	constraint fk_raAluno foreign key (ra) references Alunos(ra)
 );
 
+insert into chamada (sala,ra,status)values (100,1800000,'Presente')
 
-CREATE PROCEDURE VerificaPresenca
+ALTER PROCEDURE VerificaPresenca
 @ra int, @status varchar(50),@sala int
 as
 begin
 	declare @data date = convert(date,getdate())
-	if (select count(*) from Chamada) > 0 and (select top 1 data from Chamada) = @data 
+	if (select count(*) from Chamada) = (select count(*) from Alunos) and (select top 1 data from Chamada) = @data 
 		GOTO siga
 	else
 	begin
+		truncate table chamada
 		insert into chamada (sala,ra)
 		select
 			 @sala
@@ -54,7 +60,3 @@ begin
 			where ra = @ra
 		end
 end
-
--- SELECT * FROM Alunos
-
--- SELECT * FROM Chamada

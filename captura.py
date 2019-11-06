@@ -7,7 +7,7 @@ camera = cv2.VideoCapture(0)
 classificador = cv2.CascadeClassifier("haarcascade-frontalface-default.xml") #Arquivo haarcascade faz o treinamento para a detecção de rostos
 classificadorOlho = cv2.CascadeClassifier("haarcascade-eye.xml") #Arquivo haarcascade faz o treinamento para a detecção de olhos
 amostra = 1 #Contador
-numeroAmostras = 50 #Quantidade de fotos tiradas
+numeroAmostras = 100 #Quantidade de fotos tiradas
 id = input('Digite seu identificador: ')
 
 '''
@@ -35,7 +35,7 @@ while (True):
 
         ###### Coletar dos dados (captura das faces pela webcam) ########
             if cv2.waitKey(1) & 0xFF == ord('a'):
-                if np.average(imagemCinza) > 170:
+                if np.average(imagemCinza) > 110:
                     imagemFace = cv2.resize(imagemCinza[y:y + a, x:x +l],(largura,altura))
                     cv2.imwrite("fotos/pessoa."+str(id)+"."+str(amostra)+".jpg",imagemFace)
                     print("[foto " + str(amostra)+ "captura com sucesso]")
