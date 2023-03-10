@@ -5,7 +5,7 @@ import pyodbc
 server = 'localhost'
 database= 'Cognitiva'
 username = 'GuiiLuiss'
-password= 'dnr@2016'
+password= '******'
 driver = '{ODBC Driver 17 for SQL Server}'
 port = '1433'
 
